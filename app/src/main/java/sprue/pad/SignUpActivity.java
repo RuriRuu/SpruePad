@@ -56,9 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(SignUpActivity.this, "Registration completed",Toast.LENGTH_SHORT).show();
+                                assert mAuth.getCurrentUser() != null;
                                 mAuth.getCurrentUser().getUid();
-
-                                addNewUser(mAuth.getCurrentUser().getUid(), email, password);
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Registration failed",Toast.LENGTH_SHORT).show();
                             }
@@ -72,17 +71,5 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-    }
-
-    public startDatabase(DatabaseReference database){
-        spruePadDatabase = FirebaseDatabase.getInstance().getReference();
-    }
-
-    public void addNewUser(String userId, String email, String password) {
-        database = FirebaseDatabase.getInstance().getReference(databaseLink);
-        userId = mAuth.getCurrentUser().getUid();
-
-        User user = new User(email, password);
-        database.child("users").child(userId).setValue(user);
     }
 }
