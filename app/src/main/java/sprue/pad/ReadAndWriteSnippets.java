@@ -22,23 +22,6 @@ public class ReadAndWriteSnippets {
         spruePadDatabase.child("users").child(userID).setValue(user);
     }
 
-    public void writeNewUserWithTaskListeners(String userId, String name, String email) {
-        User user = new User(name, email);
 
-        spruePadDatabase.child("users").child(userId).setValue(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void nothing) {
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-
-    }
 
 }

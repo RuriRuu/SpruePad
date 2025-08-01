@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +30,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private DatabaseReference database;
-    String databaseLink = "https://spruepad-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private DatabaseReference spruePadDatabase;
+    String spruePadDatabaseURL = "https://spruepad-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,5 +73,24 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+    }
+
+    public void writeNewUserWithTaskListeners(String userId, String name, String email) {
+        User user = new User(name, email);
+
+        spruePadDatabase.child("users").child(userId).setValue(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void nothing) {
+                        Toast.makeText(SignUpActivity.this, "WRITTEN IN DB",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SignUpActivity.this, "COULD NOT CONNECT TO DB",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 }
