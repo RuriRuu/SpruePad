@@ -8,7 +8,7 @@ public class User {
         // just a constructor dont mind
     }
 
-    public User(String uid, String email, long createdAt) {
+    public User(String email, long createdAt) {
         this.uid = uid;
         this.email = email;
         this.createdAt = createdAt;

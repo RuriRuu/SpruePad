@@ -13,7 +13,7 @@ public class FirebaseUtil {
         String email = firebaseUser.getEmail();
         long createdAt = System.currentTimeMillis();
 
-        User user = new User(uid, email, createdAt);
+        User user = new User(email, createdAt);
 
         DatabaseReference spruePadDatabaseReference = FirebaseDatabase.getInstance().getReference();
         spruePadDatabaseReference.child("users").child(uid).setValue(user)
