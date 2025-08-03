@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/projectCreation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#212424">
+
+    <!-- Top App Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#1a1a1a"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Create Project"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/cancel_creation_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/transparent"
+            app:tint="@color/white"
+            android:contentDescription="Cancel"
+            android:src="@drawable/ic_cancel" />
+    </LinearLayout>
+
+    <!-- Scrollable Form Section -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+          
+                app:counterTextColor="@color/counter_text"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editProjectName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/input_field"
+                    android:fontFamily="sans-serif"
+                    android:hint="Project Name"
+                    android:inputType="textCapWords"
+                    android:padding="12dp"
+                    android:textColor="#242424"
+                    android:textColorHint="#888888"
+                    android:maxLength="30" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+          
+                app:counterTextColor="@color/counter_text"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Brand (e.g. Bandai)"
+                    android:padding="12dp"
+                    android:textColor="#242424"
+                    android:textColorHint="#888888"
+                    android:background="@drawable/input_field"
+                    android:inputType="textCapWords"
+                    android:maxLength="30" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+          
+                app:counterTextColor="@color/counter_text"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editScale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Scale (e.g. 1/144)"
+                    android:padding="12dp"
+                    android:textColor="#242424"
+                    android:textColorHint="#888888"
+                    android:background="@drawable/input_field"
+                    android:inputType="text"
+                    android:maxLength="10" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+          
+                app:counterTextColor="@color/counter_text"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Status (e.g. Backlog, WIP)"
+                    android:padding="12dp"
+                    android:textColor="#242424"
+                    android:textColorHint="#888888"
+                    android:background="@drawable/input_field"
+                    android:inputType="textCapWords"
+                    android:maxLength="30" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="500"
+          
+                app:counterTextColor="@color/counter_text"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Description"
+                    android:minLines="4"
+                    android:padding="12dp"
+                    android:textColor="#242424"
+                    android:textColorHint="#888888"
+                    android:background="@drawable/input_field"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:maxLength="500" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveProject"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:backgroundTint="#00bcd4"
+        android:fontFamily="sans-serif-medium"
+        android:padding="15dp"
+        android:text="SAVE PROJECT"
+        android:textAllCaps="true"
+        android:textColor="#ffffff"
+        app:cornerRadius="50dp" />
+</LinearLayout>

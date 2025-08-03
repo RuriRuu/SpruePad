@@ -18,6 +18,9 @@
         <activity android:name=".MainMenuActivity">
 
         </activity>
+        <activity android:name=".CreateProjectActivity">
+
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
