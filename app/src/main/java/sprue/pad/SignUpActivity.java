@@ -15,14 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     private Button SignUpButton;
@@ -44,27 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         SignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email, password;
-                email = SignUpEmail.getText().toString();
-                password = SignUpPassword.getText().toString();
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-                    Toast.makeText(SignUpActivity.this, "no empty fields allowed!",Toast.LENGTH_SHORT).show();
-                } else {
-                    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(SignUpActivity.this, "Registration completed",Toast.LENGTH_SHORT).show();
-                                assert mAuth.getCurrentUser() != null;
-                                mAuth.getCurrentUser().getUid();
-                                FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                                addUserToDatabase(firebaseUser);
-                            } else {
-                                Toast.makeText(SignUpActivity.this, "Registration failed",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
+                createUser();
             }
         });
         loginRedirect.setOnClickListener(v -> {
@@ -72,5 +48,29 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+    }
+    public void createUser(){
+        String email, password;
+        email = SignUpEmail.getText().toString();
+        password = SignUpPassword.getText().toString();
+
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            Toast.makeText(SignUpActivity.this, "no empty fields allowed!",Toast.LENGTH_SHORT).show();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(SignUpActivity.this, "Registration completed",Toast.LENGTH_SHORT).show();
+                        assert mAuth.getCurrentUser() != null;
+                        mAuth.getCurrentUser().getUid();
+                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                        addUserToDatabase(firebaseUser);
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Registration failed",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }
