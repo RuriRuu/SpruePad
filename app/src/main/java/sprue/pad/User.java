@@ -1,19 +1,20 @@
 package sprue.pad;
 
-
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class User {
+    public String uid;
     public String email;
-    public String password;
+    public long createdAt;
 
     public User() {
         // just a constructor dont mind
     }
 
-    public User(String email, String password) {
+    public User(String uid, String email, long createdAt) {
+        this.uid = uid;
         this.email = email;
-        this.password = password;
+        this.createdAt = createdAt;
     }
 }

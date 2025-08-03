@@ -1,5 +1,7 @@
 package sprue.pad;
 
+import static sprue.pad.FirebaseUtil.addUserToDatabase;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,20 +20,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
-
-
     private Button SignUpButton;
     private EditText SignUpEmail, SignUpPassword;
     private TextView loginRedirect;
-
     private FirebaseAuth mAuth;
-
-    private DatabaseReference spruePadDatabase;
-    String spruePadDatabaseURL = "https://spruepad-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 Toast.makeText(SignUpActivity.this, "Registration completed",Toast.LENGTH_SHORT).show();
                                 assert mAuth.getCurrentUser() != null;
                                 mAuth.getCurrentUser().getUid();
+                                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                                addUserToDatabase(firebaseUser);
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Registration failed",Toast.LENGTH_SHORT).show();
                             }
@@ -73,24 +72,5 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-    }
-
-    public void writeNewUserWithTaskListeners(String userId, String name, String email) {
-        User user = new User(name, email);
-
-        spruePadDatabase.child("users").child(userId).setValue(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void nothing) {
-                        Toast.makeText(SignUpActivity.this, "WRITTEN IN DB",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SignUpActivity.this, "COULD NOT CONNECT TO DB",Toast.LENGTH_SHORT).show();
-                    }
-                });
-
     }
 }
