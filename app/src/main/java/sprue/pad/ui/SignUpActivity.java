@@ -1,6 +1,6 @@
-package sprue.pad;
+package sprue.pad.ui;
 
-import static sprue.pad.FirebaseUtil.addUserToDatabase;
+import static sprue.pad.utility.FirebaseUtil.addUserToDatabase;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import sprue.pad.R;
+
 
 public class SignUpActivity extends AppCompatActivity {
     private Button SignUpButton;

@@ -39,6 +39,11 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
 
+    implementation("com.github.QuadFlask:colorpicker:0.0.15")
+
+    implementation("com.google.code.gson:gson:2.10.1")
+
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

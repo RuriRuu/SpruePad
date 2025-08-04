@@ -12,17 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpruePad"
         tools:targetApi="31">
-        <activity android:name=".SignUpActivity">
+        <activity android:name=".ui.SignUpActivity">
 
         </activity>
-        <activity android:name=".MainMenuActivity">
+        <activity android:name=".ui.mainmenu.MainMenuActivity">
 
         </activity>
-        <activity android:name=".CreateProjectActivity">
+        <activity android:name=".ui.mainmenu.CreateProjectActivity">
 
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

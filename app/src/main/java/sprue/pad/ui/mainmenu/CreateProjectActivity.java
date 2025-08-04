@@ -1,4 +1,4 @@
-package sprue.pad;
+package sprue.pad.ui.mainmenu;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import sprue.pad.utility.FirebaseUtil;
+import sprue.pad.R;
 
 public class CreateProjectActivity extends AppCompatActivity {
 
@@ -75,6 +78,8 @@ public class CreateProjectActivity extends AppCompatActivity {
         data.putExtra("status", status);
         data.putExtra("notes", notes);
         setResult(RESULT_OK, data);
+        Intent intent = new Intent(CreateProjectActivity.this, MainMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 }

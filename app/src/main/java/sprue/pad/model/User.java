@@ -1,4 +1,4 @@
-package sprue.pad;
+package sprue.pad.model;
 public class User {
     public String uid;
     public String email;
