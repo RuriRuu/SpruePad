@@ -94,7 +94,7 @@ public class FirebaseUtil {
     public static void addTasktoProject(String projectName, String task) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).child("Tasks").push().setValue(task).addOnCompleteListener(task1 -> {
+        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).child("tasks").push().setValue(task).addOnCompleteListener(task1 -> {
             if (task1.isSuccessful()) {
                 Log.d("Firebase", "Task added to database.");
             } else {
@@ -111,7 +111,7 @@ public class FirebaseUtil {
             return null;
         }
 
-        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).child("Tasks").get().addOnCompleteListener(task -> {
+        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).child("tasks").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Map<String, String> tasks = new HashMap<>();
                 DataSnapshot result = task.getResult();
@@ -136,7 +136,7 @@ public class FirebaseUtil {
     public static void deleteTaskFromProject(String projectName, String task) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).child("Tasks").child(task).removeValue().addOnCompleteListener(task1 -> {
+        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).child("tasks").child(task).removeValue().addOnCompleteListener(task1 -> {
             if (task1.isSuccessful()) {
                 Log.d("Firebase", "Task deleted from database.");
             } else {

@@ -2,19 +2,19 @@ package sprue.pad.model;
 
 public class Task {
     private String ID;
-    private String Task;
+    private String task;
 
     public Task(String ID ,String task ) {
         this.ID = ID;
-        this.Task = task;
+        this.task = task;
     }
 
     public String getTask() {
-        return Task;
+        return task;
     }
 
     public void setTask(String task) {
-        this.Task = task;
+        this.task = task;
     }
 
     public String getID() {
