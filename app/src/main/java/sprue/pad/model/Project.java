@@ -1,6 +1,6 @@
 package sprue.pad.model;
 
-public class Project {
+public class Project  {
 
     public String projectName;
     public String brand;

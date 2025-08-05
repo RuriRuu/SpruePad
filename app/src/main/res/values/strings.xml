@@ -9,4 +9,13 @@
     <string name="color_picker_card">Color picker card:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="project_name">Project Name</string>
+    <string name="scale_e_g_1_144">Scale (e.g. 1/144)</string>
+    <string name="status_e_g_in_progress">Status (e.g. In Progress)</string>
+    <string name="notes">Notes</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="brand">Brand</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="product_name">Product Name</string>
 </resources>

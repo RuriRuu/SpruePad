@@ -180,7 +180,7 @@
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSaveProject"
+        android:id="@+id/saveProjectButton"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"

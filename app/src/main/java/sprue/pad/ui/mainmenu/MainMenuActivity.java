@@ -37,16 +37,13 @@ public class MainMenuActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         enableSignOutButton();
         enableAddProjectButton();
 
-//        List<Project> projects = new ArrayList<>();
-//        projects.add(new Project("Project 1", "Brand 1", "Scale 1", "Status 1", "Description 1"));
-//        projects.add(new Project("Project 2", "Brand 2", "Scale 2", "Status 2", "Description 2"));
-
         String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         FirebaseUtil.getProjectsOfUser(currentUserID, projects -> {
-            MainMenuRVAdapter = new MainMenuRVAdapter(projects);
+            MainMenuRVAdapter = new MainMenuRVAdapter(projects, this);
             RecyclerView projectContainer = findViewById(R.id.project_container);
             projectContainer.setAdapter(MainMenuRVAdapter);
             projectContainer.setLayoutManager(new GridLayoutManager(this

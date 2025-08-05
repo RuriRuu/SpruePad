@@ -30,25 +30,6 @@ public class FirebaseUtil {
         });
     }
 
-    public static void getProjectsOfUser(String uid, OnProjectsLoadedListener listener) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("users").child(uid).child("projects").get()
-                .addOnCompleteListener(task -> {
-                    List<Project> projects = new ArrayList<>();
-                    if (task.isSuccessful()) {
-                        for (DataSnapshot projectSnapshot : task.getResult().getChildren()) {
-                            Project project = projectSnapshot.getValue(Project.class);
-                            projects.add(project);
-                        }
-                        listener.onProjectsLoaded(projects);
-                    } else {
-                        Log.e("Firebase", "Failed to get projects: " + task.getException());
-                        listener.onProjectsLoaded(projects); // return empty list
-                    }
-                });
-    }
-
-
     public static void addProjectToDatabase(String projectName, String brand, String scale, String status, String notes) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -58,6 +39,35 @@ public class FirebaseUtil {
                 Log.d("Firebase", "Project added to database.");
             } else {
                 Log.e("Firebase", "Failed to add project: " + task.getException());
+            }
+        });
+    }
+
+    public static void getProjectsOfUser(String uid, OnProjectsLoadedListener listener) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("users").child(uid).child("projects").get().addOnCompleteListener(task -> {
+            List<Project> projects = new ArrayList<>();
+            if (task.isSuccessful()) {
+                for (DataSnapshot projectSnapshot : task.getResult().getChildren()) {
+                    Project project = projectSnapshot.getValue(Project.class);
+                    projects.add(project);
+                }
+                listener.onProjectsLoaded(projects);
+            } else {
+                Log.e("Firebase", "Failed to get projects: " + task.getException());
+                listener.onProjectsLoaded(projects);
+            }
+        });
+    }
+
+    public static void deleteProject(String projectName) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference.child("users").child(firebaseUser.getUid()).child("projects").child(projectName).removeValue().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("Firebase", "Project deleted from database.");
+            } else {
+                Log.e("Firebase", "Failed to delete project: " + task.getException());
             }
         });
     }

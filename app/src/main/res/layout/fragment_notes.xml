@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="Project avatar"
                 android:scaleType="centerCrop"
-                android:src="@drawable/default_avatar"
+                android:src="@drawable/default_image"
                 app:layout_constraintEnd_toStartOf="@id/notes_project_brand"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
