@@ -111,7 +111,7 @@ public class MainMenuRVAdapter extends RecyclerView.Adapter<MainMenuRVAdapter.Vi
         saveButton.setOnClickListener(view -> {
             Project newProject = new Project(name.getText().toString(), brand.getText().toString(), scale.getText().toString(), status.getText().toString(), desc.getText().toString());
             FirebaseUtil.deleteProject(project.getProjectName());
-            FirebaseUtil.addProjectToDatabase(newProject.getProjectName(), newProject.getBrand(), newProject.getScale(), newProject.getStatus(), newProject.getDescription());
+            FirebaseUtil.addProjectToDatabase(newProject);
             projectList.remove(project);
             projectList.add(newProject);
             adapter.notifyDataSetChanged();

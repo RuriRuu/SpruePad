@@ -9,6 +9,7 @@ import sprue.pad.model.Project;
 import sprue.pad.ui.projectcontents.fragments.Inventory_Fragment;
 import sprue.pad.ui.projectcontents.fragments.Notes_Fragment;
 import sprue.pad.ui.projectcontents.fragments.paint.Paint_Fragment;
+import sprue.pad.ui.projectcontents.fragments.tasks.Tasks_Fragment;
 
 public class ProjectPagerAdapter extends FragmentStateAdapter {
     private Project Project;
@@ -32,13 +33,7 @@ public class ProjectPagerAdapter extends FragmentStateAdapter {
                 return new Notes_Fragment();
             case 0:
             default:
-                return new Notes_Fragment();
-//                List<Task> tasks = Collections.emptyList();
-//                for (String task :
-//                        Project.getTasks()) {
-//                    tasks.add(new Task(task, false));
-//                }
-//                return new Tasks_Fragment(tasks);
+                return new Tasks_Fragment(Project.getProjectName());
         }
     }
 

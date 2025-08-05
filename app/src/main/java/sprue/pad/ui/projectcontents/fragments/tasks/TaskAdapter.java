@@ -5,9 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
+
 import sprue.pad.R;
 import sprue.pad.model.Task;
 
@@ -19,22 +22,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         this.taskList = taskList;
     }
 
-        @NonNull
-        @Override
-        public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_task_card, parent, false);
-            return new TaskViewHolder(view);
+    @NonNull
+    @Override
+    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_task_card, parent, false);
+        return new TaskViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = taskList.get(position);
-        holder.checkBox.setChecked(task.isCompleted());
-        holder.textViewTitle.setText(task.getTitle());
+        holder.checkBox.setChecked(false);
+        holder.textViewTitle.setText(task.getTask());
 
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            task.setCompleted(isChecked);
         });
     }
 

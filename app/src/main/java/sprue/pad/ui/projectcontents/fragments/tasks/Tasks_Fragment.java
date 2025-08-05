@@ -3,6 +3,7 @@ package sprue.pad.ui.projectcontents.fragments.tasks;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,12 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import sprue.pad.R;
 import sprue.pad.model.Task;
+import sprue.pad.utility.FirebaseUtil;
+import sprue.pad.utility.Taskscallback;
 
 public class Tasks_Fragment extends Fragment {
 
@@ -29,14 +33,30 @@ public class Tasks_Fragment extends Fragment {
     private TaskAdapter adapter;
     private List<Task> taskList;
     private FloatingActionButton addTaskButton;
-    private static final String PREF_KEY = "projects";
 
+    private String ProjectName;
     private SharedPreferences sharedPreferences;
 
-    private Gson gson = new Gson();
 
-    public Tasks_Fragment(List<Task> ProjectTasks) {
-        this.taskList = ProjectTasks;
+    public Tasks_Fragment(String projectName) {
+        this.ProjectName = projectName;
+        this.taskList = new ArrayList<>();
+
+        Map<String, String> ProjectTasks = FirebaseUtil.getTasks(projectName, new Taskscallback() {
+            @Override
+            public void onSuccess(Map<String, String> projectTasks) {
+                taskList.clear();
+                for (Map.Entry<String, String> entry : projectTasks.entrySet()) {
+                    taskList.add(new Task(entry.getKey(), entry.getValue()));
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("Tasks_Fragment", "Failed to load tasks", e);
+            }
+        });
     }
 
     @Nullable
@@ -67,10 +87,12 @@ public class Tasks_Fragment extends Fragment {
         builder.setView(input);
 
         builder.setPositiveButton("Add", (dialog, which) -> {
-            String title = input.getText().toString().trim();
-            if (!title.isEmpty()) {
-                taskList.add(new Task(title, false));
+            String task = input.getText().toString().trim();
+            if (!task.isEmpty()) {
+                taskList.add(new Task("1", task));
+
                 adapter.notifyItemInserted(taskList.size());
+                FirebaseUtil.addTasktoProject(ProjectName, task);
             }
         });
 

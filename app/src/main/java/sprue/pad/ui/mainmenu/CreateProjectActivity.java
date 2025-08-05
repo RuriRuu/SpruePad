@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import sprue.pad.model.Project;
 import sprue.pad.utility.FirebaseUtil;
 import sprue.pad.R;
 
@@ -69,7 +70,9 @@ public class CreateProjectActivity extends AppCompatActivity {
             return;
         }
 
-        FirebaseUtil.addProjectToDatabase(name, brand, scale, status, notes);
+        Project newProject = new Project(name, brand, scale, status, notes);
+
+        FirebaseUtil.addProjectToDatabase(newProject);
 
         Intent data = new Intent();
         data.putExtra("name", name);

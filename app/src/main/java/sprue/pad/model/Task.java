@@ -1,27 +1,27 @@
 package sprue.pad.model;
 
 public class Task {
-    private String title;
-    private boolean completed;
+    private String ID;
+    private String Task;
 
-    public Task(String title, boolean completed) {
-        this.title = title;
-        this.completed = completed;
+    public Task(String ID ,String task ) {
+        this.ID = ID;
+        this.Task = task;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTask() {
+        return Task;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTask(String task) {
+        this.Task = task;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public String getID() {
+        return ID;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }
