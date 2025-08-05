@@ -1,6 +1,8 @@
 package sprue.pad.model;
 
-public class Project  {
+import java.io.Serializable;
+
+public class Project implements Serializable {
 
     public String projectName;
     public String brand;

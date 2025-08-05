@@ -22,6 +22,7 @@ import java.util.List;
 
 import sprue.pad.R;
 import sprue.pad.model.Project;
+import sprue.pad.ui.projectcontents.ProjectContentsActivity;
 import sprue.pad.utility.FirebaseUtil;
 
 public class MainMenuRVAdapter extends RecyclerView.Adapter<MainMenuRVAdapter.ViewHolder> {
@@ -54,7 +55,11 @@ public class MainMenuRVAdapter extends RecyclerView.Adapter<MainMenuRVAdapter.Vi
         holder.projectSettingsButton.setOnClickListener(view -> {
             initiateProjectDialog(project, context, projectList, this);
         });
-
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ProjectContentsActivity.class);
+            intent.putExtra("project", project);
+            context.startActivity(intent);
+        });
     }
 
     @Override
