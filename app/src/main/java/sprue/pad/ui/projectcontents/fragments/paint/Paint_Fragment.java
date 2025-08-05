@@ -59,7 +59,6 @@ public class Paint_Fragment extends Fragment {
 
         savedPaints = new ArrayList<>();
 
-
         createPaintLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {

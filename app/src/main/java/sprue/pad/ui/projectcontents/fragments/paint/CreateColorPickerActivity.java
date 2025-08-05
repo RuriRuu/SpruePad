@@ -47,7 +47,6 @@ public class CreateColorPickerActivity extends AppCompatActivity {
         mColorPreview = findViewById(R.id.create_preview_selected_color);
         mDefaultColor = 0;
 
-        //Function to choose paint
         colorPicker.setOnClickListener(view ->
                 ColorPickerDialogBuilder
                         .with(CreateColorPickerActivity.this)
@@ -65,12 +64,9 @@ public class CreateColorPickerActivity extends AppCompatActivity {
                         .build()
                         .show()
         );
-
-        //Call function to set Paint
         setPaint.setOnClickListener(view -> createPaintCard());
     }
 
-    //Function to set Paint
     private void createPaintCard() {
         String name = nameInput.getText().toString().trim();
         String brand = brandInput.getText().toString().trim();

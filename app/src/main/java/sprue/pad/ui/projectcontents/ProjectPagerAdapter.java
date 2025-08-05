@@ -22,7 +22,6 @@ public class ProjectPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-
 //        Fragment fragment; ???
         switch (position) {
             case 1:

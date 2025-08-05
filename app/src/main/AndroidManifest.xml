@@ -16,6 +16,7 @@
         <activity android:name=".ui.mainmenu.MainMenuActivity" />
         <activity android:name=".ui.mainmenu.CreateProjectActivity" />
         <activity android:name=".ui.projectcontents.ProjectContentsActivity" />
+        <activity android:name=".ui.projectcontents.fragments.paint.CreateColorPickerActivity" />
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true">
