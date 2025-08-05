@@ -60,6 +60,18 @@ public class MainMenuRVAdapter extends RecyclerView.Adapter<MainMenuRVAdapter.Vi
             intent.putExtra("project", project);
             context.startActivity(intent);
         });
+        holder.projectShareButton.setOnClickListener(view -> {
+
+            String shareText = "Project: " + project.getProjectName() + "\n" + "Brand: " + project.getBrand() + "\n" + "Scale: " + project.getScale() + "\n" + "Status: " + project.getStatus() + "\n" + "Notes: " + project.getDescription();
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, "Share project via");
+            view.getContext().startActivity(shareIntent);
+        });
     }
 
     @Override
@@ -71,12 +83,14 @@ public class MainMenuRVAdapter extends RecyclerView.Adapter<MainMenuRVAdapter.Vi
         private final TextView projectName;
         private final TextView projectDescription;
         private final ImageButton projectSettingsButton;
+        private final ImageButton projectShareButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             projectName = itemView.findViewById(R.id.projectName);
             projectDescription = itemView.findViewById(R.id.projectDescription);
             projectSettingsButton = itemView.findViewById(R.id.projectSettingsButton);
+            projectShareButton = itemView.findViewById(R.id.projectShareButton);
         }
     }
 
@@ -109,7 +123,8 @@ public class MainMenuRVAdapter extends RecyclerView.Adapter<MainMenuRVAdapter.Vi
         });
 
         saveButton.setOnClickListener(view -> {
-            Project newProject = new Project(name.getText().toString(), brand.getText().toString(), scale.getText().toString(), status.getText().toString(), desc.getText().toString());
+            Project newProject = new Project(name.getText().toString(), brand.getText().toString(), scale.getText().toString(), status.getText().toString(), desc.getText().toString(), project);
+
             FirebaseUtil.deleteProject(project.getProjectName());
             FirebaseUtil.addProjectToDatabase(newProject);
             projectList.remove(project);

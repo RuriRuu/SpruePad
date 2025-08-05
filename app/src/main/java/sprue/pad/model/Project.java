@@ -1,7 +1,6 @@
 package sprue.pad.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 public class Project implements Serializable {
@@ -11,7 +10,7 @@ public class Project implements Serializable {
     public String scale;
     public String status;
     public String description;
-    private Map<String, String> Tasks;
+    private Map<String, String> tasks;
     private Map<String, Integer> Inventory;
     private Map<Integer, String> Notes;
 
@@ -24,9 +23,20 @@ public class Project implements Serializable {
         this.scale = scale;
         this.status = status;
         this.description = description;
-        this.Tasks = null;
+        this.tasks = null;
         this.Inventory = null;
         this.Notes = null;
+    }
+
+    public Project(String projectName, String brand, String scale, String status, String description, Project oldProject){
+        this.projectName = projectName;
+        this.brand = brand;
+        this.scale = scale;
+        this.status = status;
+        this.description = description;
+        this.tasks = oldProject.getTasks();
+        this.Inventory = oldProject.getInventory();
+        this.Notes = oldProject.getNotes();
     }
 
     public String getProjectName() {
@@ -70,11 +80,11 @@ public class Project implements Serializable {
     }
 
     public Map<String, String> getTasks() {
-        return Tasks;
+        return tasks;
     }
 
     public void setTasks(Map<String, String> tasks) {
-        Tasks = tasks;
+        this.tasks = tasks;
     }
 
     public Map<String, Integer> getInventory() {
