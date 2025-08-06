@@ -37,7 +37,6 @@
             android:src="@drawable/ic_add" />
     </LinearLayout>
 
-    <!-- Scrollable Form Section -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -47,6 +46,7 @@
             android:id="@+id/paint_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:gravity="center"
             android:layout_weight="1"
             android:orientation="vertical"
             android:clipToPadding="false"

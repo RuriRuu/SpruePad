@@ -22,13 +22,10 @@ public class ProjectPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-//        Fragment fragment; ???
         switch (position) {
             case 1:
                 return new Paint_Fragment();
             case 2:
-                return new Inventory_Fragment();
-            case 3:
                 return new Notes_Fragment();
             case 0:
             default:
@@ -37,7 +34,5 @@ public class ProjectPagerAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public int getItemCount() {
-        return 4; // Tasks, Paint, Inventory, Notes
-    }
+    public int getItemCount() {return 3;}
 }

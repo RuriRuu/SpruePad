@@ -84,21 +84,14 @@
        >
 
         <ImageButton
-            android:id="@+id/ivPaintSettings"
+            android:id="@+id/ivPaintDelete"
             android:layout_width="50dp"
             android:layout_height="50dp"
 
             android:background="@android:color/transparent"
-            android:contentDescription="@string/settings"
-            android:src="@drawable/ic_settings" />
+            android:contentDescription="Delete"
+            android:src="@drawable/ic_delete" />
 
-        <ImageButton
-            android:id="@+id/ivPaintShare"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/share"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_share" />
     </LinearLayout>
     </LinearLayout>
 

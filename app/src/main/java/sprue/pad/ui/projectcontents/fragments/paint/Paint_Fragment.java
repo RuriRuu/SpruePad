@@ -106,6 +106,7 @@ public class Paint_Fragment extends Fragment {
         TextView typeText = paintCard.findViewById(R.id.paint_type);
         TextView notesText = paintCard.findViewById(R.id.paint_details);
         View colorPreview = paintCard.findViewById(R.id.preview_selected_color);
+        ImageButton deleteButton = paintCard.findViewById(R.id.ivPaintDelete);
 
         nameText.setText(paint.name);
         brandText.setText(paint.brand);
@@ -114,6 +115,21 @@ public class Paint_Fragment extends Fragment {
         colorPreview.setBackgroundColor(paint.color);
 
         paintsContainer.addView(paintCard);
+
+//        deleteButton.setOnClickListener(v -> {
+//            paintsContainer.removeView(paintCard);
+//            savedPaints.removeIf(p ->
+//                    p.name.equals(paint.name) &&
+//                            p.brand.equals(paint.brand) &&
+//                            p.type.equals(paint.type) &&
+//                            p.notes.equals(paint.notes) &&
+//                            p.color == paint.color
+//            );
+//            savePaintsToPreferences();
+//        });
+            deleteButton.setOnClickListener(v -> {
+                paintsContainer.removeView(paintCard);
+            });
     }
 
     private void displaySavedPaints() {

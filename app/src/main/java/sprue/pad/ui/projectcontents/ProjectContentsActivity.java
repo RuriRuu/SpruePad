@@ -57,8 +57,7 @@ public class ProjectContentsActivity extends AppCompatActivity {
             switch (position) {
                 case 0: tab.setText("Tasks"); break;
                 case 1: tab.setText("Paint"); break;
-                case 2: tab.setText("Inventory"); break;
-                case 3: tab.setText("Notes"); break;
+                case 2: tab.setText("Notes"); break;
             }
         }).attach();
 

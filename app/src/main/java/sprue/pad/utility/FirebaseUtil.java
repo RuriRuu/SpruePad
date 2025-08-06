@@ -32,19 +32,6 @@ public class FirebaseUtil {
         });
     }
 
-//    public static void addProjectToDatabase(String projectName, String brand, String scale, String status, String notes) {
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        Project project = new Project(projectName, brand, scale, status, notes);
-//        databaseReference.child("users").child(uid).child("projects").child(projectName).setValue(project).addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                Log.d("Firebase", "Project added to database.");
-//            } else {
-//                Log.e("Firebase", "Failed to add project: " + task.getException());
-//            }
-//        });
-//    }
-
     public static void addProjectToDatabase(Project project) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
